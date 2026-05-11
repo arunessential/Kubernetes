@@ -6,7 +6,11 @@ spec:
   source:
     type: Git
     git:
+<<<<<<< HEAD
       uri: https://github.com/arunessentail/openshift-flask-app.git
+=======
+      uri: https://github.com/arunessential/openshift-flask-app.git
+>>>>>>> 16827e6f18a190ff9f0e69a43d6d13fad143a5c3
       ref: main
   strategy:
     type: Docker
@@ -21,6 +25,9 @@ spec:
       github:
         secret: mysecret123
     - type: ConfigChange
+<<<<<<< HEAD
 
     - type: ImageChange
       imageChange: {}
+=======
+>>>>>>> 16827e6f18a190ff9f0e69a43d6d13fad143a5c3
