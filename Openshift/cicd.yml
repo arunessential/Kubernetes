@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: flask-app-pipeline
+spec:
+  tasks:
+    - name: build-image
+      taskRef:
+        name: buildah
+      params:
+        - name: IMAGE
+          value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/flask-app:latest
+
+    - name: deploy-to-openshift
+      runAfter:
+        - build-image
+      taskSpec:
+        steps:
+          - name: deploy
+            image: registry.redhat.io/openshift4/ose-cli
+            script: |
+              oc rollout restart deployment/flask-app
